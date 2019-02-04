@@ -62,11 +62,9 @@ export default class Chart extends Component {
 			<WebView
 				style={{ flex: 1 }}
 				ref={ref => (this.webview = ref)}
-				/*
 				injectedJavaScript={settingChartScript
 					.replace("{CONFIG}", JSON.stringify(this.props.chartConfiguration))
 					.replace("{DEFAULT_FONT_SIZE}", defaultFontSize)}
-				*/
 				source={require("./dist/index.html")}
 				onError={error => {
 					console.log(error);
