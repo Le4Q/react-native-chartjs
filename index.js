@@ -65,7 +65,7 @@ export default class Chart extends Component {
 				injectedJavaScript={settingChartScript
 					.replace("{CONFIG}", JSON.stringify(this.props.chartConfiguration))
 					.replace("{DEFAULT_FONT_SIZE}", defaultFontSize)}
-				source={Platform.OS == "ios" ? require("./dist/index.html") : { uri: "./dist/index.html" }}
+				source={require("./dist/index.html")}
 				onError={error => {
 					console.log(error);
 				}}
