@@ -55,11 +55,7 @@ export default class Chart extends Component {
 							.replace('{DEFAULT_FONT_SIZE}', defaultFontSize )
 					}
 					*/
-				source={
-					Platform.OS == "ios"
-						? require("./dist/index.html")
-						: { uri: "file:///android_asset/dist/index.html" }
-				}
+				source={Platform.OS == "ios" ? require("./dist/index.html") : { uri: "./dist/index.html" }}
 				onError={error => {
 					console.log(error);
 				}}
