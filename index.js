@@ -7,8 +7,21 @@ import PropTypes from "prop-types";
  */
 var settingChartScript = `
 	Chart.defaults.global.defaultFontSize={DEFAULT_FONT_SIZE};
+	var body = document.body;
+	body.parentNode.removeChild(body);
+	
+	var bodyEl = document.createElement("body");
+	bodyEl.setAttribute("id", "body");
+	bodyEl.setAttribute("style", "height: 95%");
+	document.getElementsByTagName("html")[0].appendChild(bodyEl);
+	
+	var canvasEl = document.createElement("canvas");
+	canvasEl.setAttribute("id", "myChart");
+	canvasEl.setAttribute("height", "270px");
+	document.getElementById("body").appendChild(canvasEl);
+	
 	var ctx = document.getElementById("myChart").getContext('2d');
-	var myChart = new Chart( ctx, {CONFIG} );
+	var mychart = new Chart(ctx, {CONFIG});
 `;
 
 export default class Chart extends Component {
@@ -49,12 +62,9 @@ export default class Chart extends Component {
 			<WebView
 				style={{ flex: 1 }}
 				ref={ref => (this.webview = ref)}
-				/*
-					injectedJavaScript = {
-						settingChartScript.replace( '{CONFIG}', JSON.stringify( this.props.chartConfiguration ))
-							.replace('{DEFAULT_FONT_SIZE}', defaultFontSize )
-					}
-					*/
+				injectedJavaScript={settingChartScript
+					.replace("{CONFIG}", JSON.stringify(this.props.chartConfiguration))
+					.replace("{DEFAULT_FONT_SIZE}", defaultFontSize)}
 				source={Platform.OS == "ios" ? require("./dist/index.html") : { uri: "./dist/index.html" }}
 				onError={error => {
 					console.log(error);
