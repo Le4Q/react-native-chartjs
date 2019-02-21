@@ -12,7 +12,7 @@ var settingChartScript = `
 	
 	var bodyEl = document.createElement("body");
 	bodyEl.setAttribute("id", "body");
-	bodyEl.setAttribute("style", "height: 95%");
+	bodyEl.setAttribute("style", "height: 92%");
 	document.getElementsByTagName("html")[0].appendChild(bodyEl);
 	
 	var canvasEl = document.createElement("canvas");
